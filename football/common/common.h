@@ -7,6 +7,7 @@
 
 #ifndef _COMMON_H
 #define _COMMON_H
+char conf_ans[512];
 char *get_conf_value(const char *path, const char *key);
 
 
