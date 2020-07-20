@@ -40,6 +40,19 @@ char *get_conf_value(const char *path, const char *key){
 }
 
 int socket_create_udp(int port){
+	int listener;
+	if ((listener = socket(AF_INET, SOCK_DGRAM, 0)) < 0){
+		return -1;
+	}
+	struct sockaddr_in server;
+	server.sin_family = AF_INET;
+	server.sin_addr.s_addr = htonl(INADDR_ANY);
+	server.sin_port = htons(port);
+
+	if(bind(listener, (struct sockaddr *)&server, sizeof(server)) < 0){
+		return -1;
+	}
+	return listener;
 
 }
 
